@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <title>{{title}}</title>
+</head>
+<body>
+    <header>
+        <div class="header">
+            <div class="header-inner">
+                <div class="menu">
+                    <h3><a class="logo" href="">IVA SKIN</a></h3>
+                    <h3><a class="menu__list-link" href="#">УСЛУГИ</a></h3>
+                    <h3><a class="menu__list-link" href="#">О НАС</a></h3>
+                    <h3><a class="menu__list-link" href="#">FAQ</a></h3>
+                    <h3><a class="menu__list-link" href="#">КОНТАКТЫ</a></h3>
+                </div>
+                <div class="menu2">
+                    <h3><a class="menu__list-link1" href="#" class="IVA" >Г. ТАГАНРОГ, УЛ. ОКТЯБРЬСКАЯ 17</a></h3>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section1 class="main-intro">
+        <div class="main-inner">
+            <div class="left">
+                <h1><span id="o1">Iva Skin</span> — гладкая кожа навсегда</h1>
+                <ul class="main-list">
+                    <li class="main-li" id="hah2">
+                        <h2 id="main-h2">лазерная эпиляция</h2>
+                    </li>
+                    <li class="main-li">
+                        <h2 id="main-h2">брови</h2>
+                    </li>
+                    <li class="main-li">
+                        <h2 id="main-h2">ресницы</h2>
+                    </li>
+                </ul>
+                <h2 id="main-h22">Идеальная кожа — это просто. Доверься профессионалам <span id="o2">Iva Skin</span></h2>
+                <button class="main-btn">записаться</button>
+            </div>
+            <div class="right">
+                <img src="{% static 'ivaapp/logo.jpg' %}">
+            </div>
+        </div>
+    </section1>
+
+    <section2>
+        <div class="service-inner">
+            <div class="service-top-text">
+                <h1 id="service-top-h1">Лазерная эпиляция в Iva Skin выбери свой идеальный комплекс</h1>
+                <h4 id="service-top-h4">Хочешь гладкую кожу без лишних хлопот? Мы предлагаем готовые решения для разных зон — просто выбери подходящий вариант!</h4>
+            </div>
+            <div class="wrapper-complex">
+                <div class="complex1">
+                    <img id='img1'src="{%static 'ivaapp/img1.png'%}">
+                    <div class="text-img">
+                        <h1>Комплекс (XL) — 5 300 ₽</h1>
+                        <h3 id="complex-h3">Современное оборудование гарантирует эффективность и комфорт во время процедуры:</h3>
+                        <h3>Тотальное бикини + подмышки</h3>
+                        <h3>полностью ноги + полностью руки</h3>
+                        <h3>Идеально перед отпуском или к важному событию</h3>
+                    </div>
+                </div>
+                <hr width="1200px">
+                <div class="complex2">
+                    <img id='img2'src="{%static 'ivaapp/img2.png'%}">
+                    <div class="text-img">
+                        <h1>Комплекс (M) — 2 200 ₽</h1>
+                        <h3 id="complex-h3">Подходит для всех типов кожи включая смуглую и чувствительную:</h3>
+                        <h3>Тотальное бикини + голени</h3>
+                        <h3>Лазерная эпиляция зон бекини и голени</h3>
+                        <h3>Оптимальное сочетание цены и результата</h3>
+                    </div>
+                </div>
+                <hr width="1200px">
+                <div class="complex3">
+                    <img id='img3'src="{%static 'ivaapp/img3.png'%}">
+                    <div class="text-img">
+                        <h1>Комплекс (S) — 1 700 ₽</h1>
+                        <h3 id="complex-h3">Встроенная система охлаждения делает процесс безболезненным:</h3>
+                        <h3>Тотально бикини + подмышки</h3>
+                        <h3>Лазерная эпиляция зон бикини и подмышек</h3>
+                        <h3>подмышечные впадины</h3>
+                    </div>
+                </div>
+                <hr width="1200px">
+                <div class="complex4">
+                    <img id='img4'src="{%static 'ivaapp/img4.png'%}">
+                    <div class="text-img">
+                        <h1>Комплекс (L) — 2 900 ₽</h1>
+                        <h3 id="complex-h3">Опытные косметологи подберут индивидуальные параметры:</h3>
+                        <h3>Тотальное бикини + подмышки + голени</h3>
+                        <h3>Лазерная эпиляция зон бикини, голени </h3>
+                        <h3>Подмышечные впадины</h3>
+                    </div>
+                </div>
+                <hr width="1200px">
+                <div class="complex5">
+                    <img id='img5'src="{%static 'ivaapp/img5.png'%}">
+                    <div class="text-img">
+                        <h1>Комплекс (XS) — 1 400 ₽</h1>
+                        <h3 id="complex-h3">Специальные акции: скидки на курс пробный сеанс:</h3>
+                        <h3>Подмышки + голени</h3>
+                        <h3>В него включены:</h3>
+                        <h3>подмышечные впадины и голени</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section2>
+
+    <section class="section3">
+        <div class="about-us">
+            <h1>IVA SKIN — идеальная гладкость без компромиссов</h1>
+            <h3>Профессиональная лазерная эпиляция на оборудовании последнего поколения для всех типов кожи</h3>
+        </div>
+
+        <div class="parent">
+            <div class="div1">
+                <img src="{%static 'ivaapp/laser4.png'%}">
+                <div class="text-chose">
+                    <h1>ТЕХНОЛОГИИ</h1>
+                    <div class="hh2">
+                        <h3>3 типа сертифицированных лазеров для всех фототипов кожи</h3>
+                        <h3>Встроенная система охлаждения Cryo Technology для комфорта</h3>
+                        <!-- <h2>Технология избирательного фототермолиза - воздействие только на волосы</h2>
+                        <h2>Европейские сертификаты безопасности всех аппаратов</h2> -->
+                    </div>
+                </div>
+            </div>
+            <div class="div1">
+                <img src="{%static 'ivaapp/laser1.png'%}">
+                <div class="text-chose">
+                    <h1>НАША КОМАНДА</h1>
+                    <div class="hh2">
+                        <h3>Врачи-косметологи с опытом работы от 5 лет</h3>
+                        <h3>Бесплатная первичная консультация с диагностикой кожи</h3>
+                        <!-- <h2>Индивидуальный протокол процедур для каждого клиента</h2>
+                        <h2>Контроль результата после каждого сеанса</h2> -->
+                    </div>
+                </div>
+            </div>
+            <div class="div1">
+                <img src="{%static 'ivaapp/laser2.png'%}">
+                <div class="text-chose">
+                    <h1>БЕЗОПАСНОСТЬ</h1>
+                    <div class="hh2">
+                        <h3>Полностью одноразовые расходные материалы</h3>
+                        <h3>Стерилизация оборудования после каждого клиента</h3>
+                        <!-- <h2>Гипоаллергенные охлаждающие гели</h2>
+                        <h2>Медицинские протоколы проведения процедур</h2> -->
+                    </div>
+                </div>
+            </div>
+            <div class="div1">
+                <img src="{%static 'ivaapp/laser3.png'%}">
+                <div class="text-chose">
+                    <h1>КОМФОРТ</h1>
+                    <div class="hh2">
+                        <h3>Удобное расположение в центре города с парковкой</h3>
+                        <h3>Уютные процедурные кабинеты для посетителей</h3>
+                        <!-- <h2>Гибкий график работы с 9:00 до 21:00</h2>
+                        <h2>Система лояльности и рассрочка платежа</h2> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="otdel">
+        <h1 class="otdel-reviews">Отдельные услуги</h1>
+        {% for i in clients %}
+            <div class="menu-client">
+                <div class="text-client">
+                    <h1 id="h1r">{{ i.title }}</h1>
+                    <h3 id="h3r">{{ i.description }}</h3>
+                    <div class="tags">
+                        {% for tag in i.tags.all %}
+                            <span class="tag-span">{{ tag.name }}</span>
+                        {% endfor %}
+                    </div>
+                    <button class="main-btn2"><a href="{% url 'description' i.id %}">Записаться</a></button>
+                </div>
+                <img src="{{ i.image.url }}" alt="">
+            </div>
+        {% endfor %}
+    </div>
+
+
+    <div class="reviews-ad">
+        {% if user.is_authenticated %}
+            <a href="{% url 'add_review' %}">Оставить отзыв</a>
+        {% else %}
+            <p>Только зарегистрированные пользователи могут оставлять отзывы.</p>
+        {% endif %}
+        <h1 class="otdel-reviews">Отзывы от наших клиентов</h1>
+        {% for review in reviews %}
+        <div class="texts">
+            <div class="in">
+                <h1 id="h1rr">{{ review.serv.name }}</h1>
+                <h3 id="h3rr">{{ review.user.username }}</h3>
+                <h3 id="h3rr">{{ review.date }}</h3>
+                <p id="h3rr">{{ review.text }}</p>
+                
+            </div>
+        {% empty %}
+            <p>Пока нет отзывов.</p>
+        {% endfor %}
+
+        
+        </div>
+    </div>
+
+    <div class="user-log">
+        <div class="wrap">
+
+                {% if user.is_authenticated %}
+                    <h1 class="logo-user">Пользователь: {{ user.username }}</h1>
+                    <h1>
+                        <form action="{% url 'logoutuser' %}" method="post">
+                            {% csrf_token %}
+                            <button class="top">Выйти</button>
+                        </form>
+                    </h1>
+                {% else %}
+                    <h1><a href="{% url 'signupuser' %}">Зарегистрироваться</a></h1>
+                    <h1><a href="{% url 'loginuser' %}">Войти</a></h1>
+                {% endif %}
+
+        </div>
+    </div>
+
+</body>
+</html>
