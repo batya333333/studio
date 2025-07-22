@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ivaapp.apps.IvaappConfig',
+    'appointment.apps.AppointmentConfig',
 ]
 
 MIDDLEWARE = [
