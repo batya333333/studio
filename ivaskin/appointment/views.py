@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from appointment.models import Appointment
+from appointment.models import Appointment, Master
 from appointment.forms import AppointmentForm
 from ivaapp.models import Forclient
 from datetime import datetime, time, timedelta
@@ -17,6 +17,7 @@ def get_time_slots(start, end, delta):
 
 def book_appointment(request, service_id):
     service = get_object_or_404(Forclient, id=service_id)
+    master = Master.objects.first()
     date_selected = request.POST.get('date') or request.GET.get('date')
     available_times = []
     date_obj = None
@@ -39,6 +40,7 @@ def book_appointment(request, service_id):
             else:
                 appointment = form.save(commit=False)
                 appointment.service = service
+                appointment.master = master
                 appointment.date = date_obj
                 appointment.save()
                 return redirect('index')

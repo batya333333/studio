@@ -6,7 +6,7 @@ from django.utils import timezone
 class AppointmentForm(forms.ModelForm):
     class Meta:
         model = Appointment
-        fields = ['date', 'time', 'phone', 'email']
+        fields = ['first_name', 'last_name','date', 'time', 'phone', 'email']
         widgets = {
             'phone': forms.TextInput(attrs={
                 'id': 'id_phone',

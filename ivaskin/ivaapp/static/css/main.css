@@ -1043,13 +1043,13 @@ body{
 }
 
 hr {
-  display: block;
-  width: 100% !important;
-  max-width: 100vw !important;
+  /* display: block; */
+  /* width: 100% !important; */
+  /* max-width: 100vw !important; */
   height: 2px;
   background: #A23A3F;
   border: none;
-  margin: 24px 0;
+  /* margin: 24px 0; */
 }
 
 @media (max-width: 900px) {
@@ -1319,4 +1319,18 @@ hr {
 
 .btn2:hover{
     background-color: #8b2f33;
+}
+
+#id_first_name{
+  width: 271px;
+  height: 28px;
+  border-radius: 10px;
+  border: solid 1px grey;
+}
+
+#id_last_name{
+  width: 271px;
+  height: 28px;
+  border-radius: 10px;
+  border: solid 1px grey;
 }

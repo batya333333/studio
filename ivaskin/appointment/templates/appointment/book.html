@@ -11,7 +11,7 @@
     <title>Document</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.8/inputmask.min.js"></script>
     <script>
-    Inputmask({"mask": "+7 (999) 999-99-99"}).mask("#id_phone");
+        Inputmask({"mask": "+7 (999) 999-99-99"}).mask("#id_phone");
     </script>
 </head>
 <body>
@@ -65,6 +65,11 @@
             <h1 id="h1rr">Почта</h1>
             {{ form.email }}
             <br>
+            <h1 id="h1rr">Имя</h1>
+            {{ form.first_name }}
+
+            <h1 id="h1rr">Фамилия</h1>
+            {{ form.last_name }}
 
             <button type="submit" class="btn2">Записаться</button>
         </form>
