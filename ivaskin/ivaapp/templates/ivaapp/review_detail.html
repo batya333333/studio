@@ -8,8 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap" rel="stylesheet">
-    <title>{{title}}</title>
-
+    <title>Document</title>
 </head>
 <body>
     <header>
@@ -29,11 +28,12 @@
         </div>
     </header>
 
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Отправить</button>
-    </form>
+    <div class="full-review">
+        <h1 id="h1rr">{{ review.serv.name }}</h1>
+        <h3 id="h3rr">{{ review.user.username }}</h3>
+        <h3 id="h3rr">{{ review.date }}</h3>
+        <p id="h3rr">{{ review.text }}</p>
+    </div>
     
 </body>
 </html>

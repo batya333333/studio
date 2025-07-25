@@ -73,3 +73,7 @@ def add_review(request):
     else:
         form = ReviewsForm()
     return render(request, 'ivaapp/add_review.html', {'form': form})
+
+def read_fuul_review(request,id):
+    review = get_object_or_404(Reviews,pk=id)
+    return render(request,'ivaapp/review_detail.html',{'review':review})

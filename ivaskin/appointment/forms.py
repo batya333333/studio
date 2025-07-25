@@ -1,11 +1,23 @@
 from django import forms
 from .models import Appointment
 from datetime import datetime
+from django.utils import timezone
 
 class AppointmentForm(forms.ModelForm):
     class Meta:
         model = Appointment
-        fields = ['service', 'date', 'time', 'phone', 'email']
+        fields = ['date', 'time', 'phone', 'email']
+        widgets = {
+            'phone': forms.TextInput(attrs={
+                'id': 'id_phone',
+                'type': 'tel',
+                'placeholder': '+7 (___) ___-__-__',
+                'maxlength': '18',
+            }),
+            'email': forms.TextInput(attrs={
+                'placeholder': 'example@gmail.com',
+            }),
+        }
 
 
     def clean_phone(self):
@@ -16,7 +28,7 @@ class AppointmentForm(forms.ModelForm):
     
     def clean_date(self):
         date = self.cleaned_data['date']
-        if date < datetime.now():
+        if date < timezone.now():
             raise forms.ValidationError('Дата не может быть в прошлом')
         return date
     

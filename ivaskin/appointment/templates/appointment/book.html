@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.8/inputmask.min.js"></script>
+    <script>
+    Inputmask({"mask": "+7 (999) 999-99-99"}).mask("#id_phone");
+    </script>
+</head>
+<body>
+
+    <header>
+        <div class="header">
+            <div class="header-inner">
+                <div class="menu">
+                    <h3><a class="logo" href="">IVA SKIN</a></h3>
+                    <h3><a class="menu__list-link" href="#">УСЛУГИ</a></h3>
+                    <h3><a class="menu__list-link" href="#">О НАС</a></h3>
+                    <h3><a class="menu__list-link" href="#">FAQ</a></h3>
+                    <h3><a class="menu__list-link" href="#">КОНТАКТЫ</a></h3>
+                </div>
+                <div class="menu2">
+                    <h3><a class="menu__list-link1" href="#" class="IVA" >Г. ТАГАНРОГ, УЛ. ОКТЯБРЬСКАЯ 17</a></h3>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="main-for-form">
+        <div class="about-for-form">
+            <h1 id="h1r">{{ service }}</h1>
+            <h3 id="h3r">{{ service.description }}</h3>
+            
+            {% for tag in service.tags.all %}
+                <span class="tag-span">{{ tag.name }}</span>
+            {% endfor %}
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            <h1 id='h1rr'>Дата</h1>
+            <!-- <br> -->
+            <input type="date" name="date" id="date" value="{{ date_selected|default:'' }}" required onchange="this.form.submit();">
+
+            {% if date_selected %}
+                <br>
+                <h1 id='h1rr'>Время</h1>
+                <!-- <br> -->
+                <select name="time" id="id_time" required>
+                    {% for t in available_times %}
+                        <option value="{{ t }}">{{ t|time:"H:i" }}</option>
+                    {% empty %}
+                        <option disabled>Нет свободного времени</option>
+                    {% endfor %}
+                </select>
+            {% endif %}
+
+            <h1 id="h1rr">Телефон</h1>
+            {{ form.phone }}
+            <h1 id="h1rr">Почта</h1>
+            {{ form.email }}
+            <br>
+
+            <button type="submit" class="btn2">Записаться</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from ivaapp import views
 from django.conf.urls.static import static
 from django.conf import settings
@@ -26,6 +26,8 @@ urlpatterns = [
     path('', views.ind, name='index'),
     path('<int:description_id>/', views.desc, name='description'),
     path('add_review/', views.add_review, name='add_review'),
+    path('appointment/', include('appointment.urls')),
+    path('reviews/<int:id>/', views.read_fuul_review, name='reviews'),
     #auth
     path('signup/', views.signup_user, name='signupuser'),
     path('logout/', views.logout_user, name='logoutuser'),

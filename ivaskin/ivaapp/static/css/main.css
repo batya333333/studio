@@ -618,6 +618,20 @@ body{
     text-align: center;
 }
 
+.otdel-reviews2{
+    font-size: 40px;
+    color:#A23A3F;
+    font-weight: bold;
+    margin-bottom: 170px;
+    text-align: center;
+    margin-top:170px;
+}
+
+.make-reviews-tag{
+  color:#A23A3F
+
+}
+
 .menu-client{
     display: flex;
     align-items: center;
@@ -666,11 +680,13 @@ body{
 #h1rr{
   color:#A23A3F;
   margin-bottom: 0;
+  font-size:20px;
 }
 
 #h3rr{
   color: #64485C;
   margin-bottom: 0;
+  font-size:15px;
 }
 
 .tag-span{
@@ -756,17 +772,27 @@ body{
     box-shadow: 0 6px 24px rgba(162, 58, 63, 0.12), 0 3px 6px rgba(108, 105, 104, 0.08);
 } */
 
+.main-for-form{
+  max-width: max-content;
+  margin: 0 auto;
+}
+
+.about-for-form{
+  margin-bottom:20px;
+}
 
 .in{
-  width: 500px;
+  width: 400px;
   border:solid 1px #dddddd;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
   padding:20px;
   background: #F2F2F2;
   box-shadow: 0 6px 24px rgba(162, 58, 63, 0.12), 0 3px 6px rgba(108, 105, 104, 0.08);
+  margin: 0 auto;
+  justify-content: center;
 }
 
 .abouts-rev{
@@ -778,9 +804,27 @@ body{
 .reviews-ad{
     display: flex;
     align-items: center;
-    margin-top: 170px;
-    gap: 40px;
+    /* margin-top: 170px; */
+    /* gap: 20px; */
     flex-wrap: wrap;
+    max-width: 1680px;
+    margin: 0 auto;
+}
+
+.make-review{
+  text-align: center;
+  margin-top:170px;
+  font-size:20px;
+}
+
+.make-review a{
+  text-decoration: none;
+}
+
+
+.full-review{
+  max-width:1400px;
+  margin: 0 auto;
 }
 
 .wrap{
@@ -1230,4 +1274,49 @@ hr {
 }
 
 
+/* book html */
 
+#id_phone{
+  width: 271px;
+  height: 28px;
+  border-radius: 10px;
+  border: solid 1px grey;
+}
+
+#id_email{
+  width: 271px;
+  height: 28px;
+  border-radius: 10px;
+  border: solid 1px grey;
+}
+
+#date{
+  width: 271px;
+  height: 28px;
+  border-radius: 10px;
+  border: solid 1px grey;
+}
+
+#id_time{
+  width: 271px;
+  height: 28px;
+  border-radius: 10px;
+  border: solid 1px grey;
+}
+
+.btn2{
+    width: 100%;
+    padding: 12px;
+    background-color: #A23A3F;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top:20px;
+}
+
+.btn2:hover{
+    background-color: #8b2f33;
+}
