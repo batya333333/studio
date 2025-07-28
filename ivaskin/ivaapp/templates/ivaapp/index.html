@@ -221,6 +221,7 @@
         <div class="wrap">
 
                 {% if user.is_authenticated %}
+                    <h1><a href="{% url 'userprofile:profile' %}">Войти в профлиль</a></h1>
                     <h1 class="logo-user">Здравствуйте, {{ user.username }}</h1>
                     <h1>
                         <form action="{% url 'logoutuser' %}" method="post">
@@ -236,5 +237,6 @@
         </div>
     </div>
 
+    
 </body>
 </html>
