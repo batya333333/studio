@@ -60,16 +60,26 @@
                 </select>
             {% endif %}
 
-            <h1 id="h1rr">Телефон</h1>
-            {{ form.phone }}
-            <h1 id="h1rr">Почта</h1>
-            {{ form.email }}
-            <br>
-            <h1 id="h1rr">Имя</h1>
-            {{ form.first_name }}
+            {% if form.phone %}
+                <h1 id="h1rr">Телефон</h1>
+                {{ form.phone }}
+            {% endif %}
+            
+            {% if form.email %}
+                <h1 id="h1rr">Почта</h1>
+                {{ form.email }}
+            {% endif %}
+            
+            {% if form.first_name %}
+                <br>
+                <h1 id="h1rr">Имя</h1>
+                {{ form.first_name }}
+            {% endif %}
 
-            <h1 id="h1rr">Фамилия</h1>
-            {{ form.last_name }}
+            {% if form.last_name %}
+                <h1 id="h1rr">Фамилия</h1>
+                {{ form.last_name }}
+            {% endif %}
 
             <button type="submit" class="btn2">Записаться</button>
         </form>

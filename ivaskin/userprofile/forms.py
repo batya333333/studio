@@ -11,7 +11,7 @@ class ProfileUpdateForm(forms.ModelForm):
         widgets = {
             'first_name': forms.TextInput(attrs={'placeholder': 'Введите имя'}),
             'last_name': forms.TextInput(attrs={'placeholder': 'Введите фамилию'}),
-            'phone': forms.TextInput(attrs={'placeholder': '+7XXXXXXXXXX'}),
+            'phone': forms.TextInput(attrs={'placeholder': '+7 (___) ___-__-__'}),
             'email': forms.EmailInput(attrs={'placeholder': 'example@email.com'}),
         }
 

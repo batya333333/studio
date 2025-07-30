@@ -33,7 +33,7 @@ def book_appointment(request, service_id):
         except Exception:
             available_times = []
     if request.method == 'POST':
-        form = AppointmentForm(request.POST)
+        form = AppointmentForm(request.POST, user=request.user)
         if form.is_valid():
             if Appointment.objects.filter(service=service, date=date_obj, time=form.cleaned_data['time']).exists():
                 form.add_error('time', 'Это время уже занято')
@@ -42,10 +42,22 @@ def book_appointment(request, service_id):
                 appointment.service = service
                 appointment.master = master
                 appointment.date = date_obj
+                
+                # Если пользователь авторизован, заполняем данные из профиля
+                if request.user.is_authenticated:
+                    try:
+                        profile = request.user.profile
+                        appointment.first_name = profile.first_name
+                        appointment.last_name = profile.last_name
+                        appointment.phone = profile.phone
+                        appointment.email = profile.email
+                    except:
+                        pass
+                
                 appointment.save()
                 return redirect('index')
     else:
-        form = AppointmentForm()
+        form = AppointmentForm(user=request.user)
     context = {
         'form': form,
         'service': service,

@@ -27,33 +27,47 @@
             </div>
         </div>
     </header>
-            <h1>Добавте данные о себе, чтобы было проще записываться на процедуры</h1>
-            {% if messages %}
-                {% for message in messages %}
-                        {{ message }}
-                {% endfor %}
-            {% endif %}
-            
-            <div class="profile-info" style="margin-bottom: 30px;">
-                <div class="user-details">
-                    <h3>Информация о пользователе:</h3>
-                    <p><strong>Имя пользователя:</strong></p>
-                    <p>{{ profile.user.username }}</p>
-                    <p><strong>Имя:</strong></p>
-                    <p>{{ profile.first_name|default:"Не указано" }}</p>
-                    <p><strong>Фамилия:</strong></p>
-                    <p> {{ profile.last_name|default:"Не указано" }}</p>
-                    <p><strong>Телефон:</strong></p>
-                    <p>{{ profile.phone|default:"Не указан" }}</p>
-                    <p><strong>Email:</strong></p>
-                    {{ profile.email|default:"Не указан" }}
-                    <p><strong>Дата создания профиля:</strong></p>
-                    <p>{{ profile.created_at|date:"d.m.Y H:i" }}</p>
-                    <p><strong>Последнее обновление:</strong></p>
-                    <p>{{ profile.updated_at|date:"d.m.Y H:i" }}</p>
-                </div>
+    <div class="container-profile">
+        <h1 id="h1-p">Добавте данные о себе, чтобы было проще записываться на процедуры</h1>
+        {% if messages %}
+            {% for message in messages %}
+                    {{ message }}
+            {% endfor %}
+        {% endif %}
+        
+        <div class="profile-info" >
+            <h3 id="h1-p">Информация о пользователе:</h3>
+            <hr class="h-profile">
+            <div class="user-details">
+                
+                <p><strong>Имя пользователя:</strong></p>
+                <p>{{ profile.user.username }}</p>
+                <p><strong>Имя:</strong></p>
+                <p>{{ profile.first_name|default:"Не указано" }}</p>
+                <p><strong>Фамилия:</strong></p>
+                <p> {{ profile.last_name|default:"Не указано" }}</p>
+                <p><strong>Телефон:</strong></p>
+                <p>{{ profile.phone|default:"Не указан" }}</p>
+                <p><strong>Email:</strong></p>
+                <p>{{ profile.email|default:"Не указан" }}</p>
+                <p><strong>Дата создания профиля:</strong></p>
+                <p>{{ profile.created_at|date:"d.m.Y H:i" }}</p>
+                <p><strong>Последнее обновление:</strong></p>
+                <p>{{ profile.updated_at|date:"d.m.Y H:i" }}</p>
             </div>
-            <a href="{% url 'userprofile:edit_profile' %}">Добавить ифнормацию в профлиль</a>
-            <a href="{% url 'userprofile:change_password' %}">Сменить пароль</a>
+        </div>
+        <hr class="h-profile">
+        <div class="change-for-profile-url">
+            
+            <form action="{% url 'userprofile:edit_profile' %}">
+                <button class="btn-profile">Добавить ифнормацию в профлиль</button>
+            </form>
+            <form action="{% url 'userprofile:change_password' %}">
+                <button class="btn-profile">Сменить пароль</button>
+            </form>
+            
+        </div>
+        <hr class="h-profile">
+    </div>
 </body>
 </html>

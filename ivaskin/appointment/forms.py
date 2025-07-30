@@ -19,6 +19,26 @@ class AppointmentForm(forms.ModelForm):
             }),
         }
 
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)
+        super().__init__(*args, **kwargs)
+        
+        # Если пользователь авторизован и имеет профиль, скрываем поля
+        if user and user.is_authenticated:
+            try:
+                profile = user.profile
+                # Убираем поля, которые есть в профиле
+                if 'first_name' in self.fields:
+                    del self.fields['first_name']
+                if 'last_name' in self.fields:
+                    del self.fields['last_name']
+                if 'phone' in self.fields:
+                    del self.fields['phone']
+                if 'email' in self.fields:
+                    del self.fields['email']
+            except:
+                # Если профиль не существует, оставляем все поля
+                pass
 
     def clean_phone(self):
         phone = self.cleaned_data['phone']
