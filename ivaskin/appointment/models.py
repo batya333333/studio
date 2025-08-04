@@ -1,6 +1,7 @@
 from django.db import models
 from ivaapp.models import Forclient
 from django.core.exceptions import ValidationError
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -33,6 +34,13 @@ class Order(models.Model):
         return f'{self.date} {self.time} - {self.client_name} {self.client_phone} ({self.service})'\
 
 class Appointment(models.Model):
+    STATUS_CHOICES = [
+        ('pending', 'Ожидает подтверждения'),
+        ('confirmed', 'Подтверждена'),
+        ('completed', 'Выполнена'),
+        ('cancelled', 'Отменена'),
+        ('rescheduled', 'Перенесена'),
+    ]
     first_name = models.CharField(max_length=50, blank=True, null=True)
     last_name = models.CharField(max_length=50, blank=True, null=True)
     service = models.ForeignKey(Forclient, on_delete=models.CASCADE, related_name='appoinments')
@@ -43,5 +51,40 @@ class Appointment(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     master = models.ForeignKey(Master, on_delete=models.CASCADE, related_name='appointments')
 
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='appointments', blank=True, null=True)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
+
+    # Поля для переноса записи:
+    rescheduled_date = models.DateTimeField(blank=True, null=True)
+    rescheduled_time = models.TimeField(blank=True, null=True)
+
+    
+    # Поля для отмены:
+    cancelled_at = models.DateTimeField(blank=True, null=True)
+
+    
+    # Поля для логирования изменений:
+    updated_at = models.DateTimeField(auto_now=True)
+    notes = models.TextField(blank=True, null=True)  # Дополнительные заметки
+
+
+
+    
     def __str__(self):
-        return f"{self.first_name} {self.last_name} - {self.service} - {self.date} {self.time}"
+        return f"{self.first_name} {self.last_name} - {self.service} - {self.date} {self.time} ({self.get_status_display()})"
+
+    @property
+    def is_active(self):
+        """Проверяет, активна ли запись (не отменена и не выполнена)"""
+        return self.status in ['pending', 'confirmed', 'rescheduled']
+    
+    @property
+    def can_be_cancelled(self):
+        """Можно ли отменить запись"""
+        return self.status in ['pending', 'confirmed']
+
+    @property
+    def can_be_rescheduled(self):
+        return self.status in ['pending', 'confirmed']
+
+    

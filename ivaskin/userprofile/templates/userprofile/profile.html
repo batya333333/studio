@@ -65,9 +65,128 @@
             <form action="{% url 'userprofile:change_password' %}">
                 <button class="btn-profile">Сменить пароль</button>
             </form>
-            
+            <form action="{% url 'logoutuser' %}" method="post">
+                {% csrf_token %}
+                <button class="btn-profile">Выйти</button>
+            </form>
         </div>
         <hr class="h-profile">
+        
+        <!-- История записей -->
+        <div>
+            <h1 id="h1-p">Мои записи (всего: {{ total_appointments }})</h3>
+            
+            <!-- Активные записи -->
+            {% if active_appointments %}
+                <h1 id="h1-p">Активные записи:</h4>
+                {% for appointment in active_appointments %}
+                    <div class="user-details">
+                        <p><strong>Услуга:</strong> {{ appointment.service }}</p>
+                        <p><strong>Дата:</strong> {{ appointment.date|date:"d.m.Y" }}</p>
+                        <p><strong>Время:</strong> {{ appointment.time|time:"H:i" }}</p>
+                        <p><strong>Статус:</strong> {{ appointment.get_status_display }}</p>
+                        {% if appointment.status == 'rescheduled' %}
+                            <p><strong>Перенесена:</strong> {{ appointment.updated_at|date:"d.m.Y H:i" }}</p>
+                        {% endif %}
+                        
+                        {% if appointment.can_be_cancelled %}
+                            <form method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="appointment_id" value="{{ appointment.id }}">
+                                <button type="submit" name="cancel_appointment">Отменить</button>
+                            </form>
+                        {% endif %}
+                        
+                        {% if appointment.can_be_rescheduled %}
+                            <button onclick="showRescheduleForm({{ appointment.id }})">Перенести</button>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>У вас нет активных записей.</p>
+            {% endif %}
+            
+            <!-- Завершенные записи -->
+            {% if completed_appointments %}
+                <h4>Завершенные записи:</h4>
+                {% for appointment in completed_appointments %}
+                    <div>
+                        <p><strong>Услуга:</strong> {{ appointment.service }}</p>
+                        <p><strong>Дата:</strong> {{ appointment.date|date:"d.m.Y" }}</p>
+                        <p><strong>Время:</strong> {{ appointment.time|time:"H:i" }}</p>
+                        <p><strong>Статус:</strong> {{ appointment.get_status_display }}</p>
+                        {% if appointment.cancelled_at %}
+                            <p><strong>Отменена:</strong> {{ appointment.cancelled_at|date:"d.m.Y H:i" }}</p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        
+        <!-- Форма для переноса записи (скрытая) -->
+        <div id="rescheduleModal" style="display: none;">
+            <div>
+                <h3>Перенести запись</h3>
+                <form method="post" id="rescheduleForm">
+                    {% csrf_token %}
+                    <input type="hidden" name="appointment_id" id="reschedule_appointment_id">
+                    <label>Новая дата:</label>
+                    <input type="date" name="new_date" id="new_date" required onchange="updateAvailableTimes()">
+                    <label>Доступное время:</label>
+                    <select name="new_time" id="new_time" required>
+                        <option value="">Выберите время</option>
+                    </select>
+                    <button type="submit" name="reschedule_appointment">Перенести</button>
+                    <button type="button" onclick="hideRescheduleForm()">Отмена</button>
+                </form>
+            </div>
+        </div>
     </div>
+    
+    <script>
+        function showRescheduleForm(appointmentId) {
+            document.getElementById('reschedule_appointment_id').value = appointmentId;
+            document.getElementById('rescheduleModal').style.display = 'block';
+        }
+        
+        function hideRescheduleForm() {
+            document.getElementById('rescheduleModal').style.display = 'none';
+        }
+        
+        function updateAvailableTimes() {
+            const dateInput = document.getElementById('new_date');
+            const timeSelect = document.getElementById('new_time');
+            const appointmentId = document.getElementById('reschedule_appointment_id').value;
+            
+            if (!dateInput.value) {
+                timeSelect.innerHTML = '<option value="">Сначала выберите дату</option>';
+                return;
+            }
+            
+            // Очищаем текущие опции
+            timeSelect.innerHTML = '<option value="">Загрузка...</option>';
+            
+            // Отправляем AJAX запрос для получения доступных временных слотов
+            fetch(`/profile/get-available-times/?date=${dateInput.value}&appointment_id=${appointmentId}`)
+                .then(response => response.json())
+                .then(data => {
+                    timeSelect.innerHTML = '<option value="">Выберите время</option>';
+                    if (data.available_times && data.available_times.length > 0) {
+                        data.available_times.forEach(time => {
+                            const option = document.createElement('option');
+                            option.value = time;
+                            option.textContent = time;
+                            timeSelect.appendChild(option);
+                        });
+                    } else {
+                        timeSelect.innerHTML = '<option value="">Нет доступного времени</option>';
+                    }
+                })
+                .catch(error => {
+                    console.error('Ошибка при получении доступного времени:', error);
+                    timeSelect.innerHTML = '<option value="">Ошибка загрузки</option>';
+                });
+        }
+    </script>
 </body>
 </html>

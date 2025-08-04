@@ -775,6 +775,7 @@ body{
 .main-for-form{
   max-width: max-content;
   margin: 0 auto;
+  margin-top: 120px;
 }
 
 .about-for-form{
@@ -836,6 +837,28 @@ body{
     color: #A23A3F;
     font-size: 40px;
     text-transform: uppercase;
+}
+
+.wrapper{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.hr-for-register{
+  width:1400px
+}
+
+.btn-login-sign-up{
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.btn-login-sign-up h1{
+  color: #A23A3F;
+  font-weight: bold;
+  font-size: 40px;
 }
 
 /* Общий контейнер формы */
@@ -1279,29 +1302,29 @@ body{
 #id_phone{
   width: 271px;
   height: 28px;
-  border-radius: 10px;
-  border: solid 1px grey;
+  /* border-radius: 10px;
+  border: solid 1px grey; */
 }
 
 #id_email{
   width: 271px;
   height: 28px;
-  border-radius: 10px;
-  border: solid 1px grey;
+  /* border-radius: 10px;
+  border: solid 1px grey; */
 }
 
 #date{
   width: 271px;
   height: 28px;
-  border-radius: 10px;
-  border: solid 1px grey;
+  /* border-radius: 10px;
+  border: solid 1px grey; */
 }
 
 #id_time{
   width: 271px;
   height: 28px;
-  border-radius: 10px;
-  border: solid 1px grey;
+  /* border-radius: 10px;
+  border: solid 1px grey; */
 }
 
 .btn2{
@@ -1324,15 +1347,15 @@ body{
 #id_first_name{
   width: 271px;
   height: 28px;
-  border-radius: 10px;
-  border: solid 1px grey;
+  /* border-radius: 10px;
+  border: solid 1px grey; */
 }
 
 #id_last_name{
   width: 271px;
   height: 28px;
-  border-radius: 10px;
-  border: solid 1px grey;
+  /* border-radius: 10px;
+  border: solid 1px grey; */
 }
 
 
@@ -1397,9 +1420,10 @@ body{
 /* EDIT PROFILE */
 
 
-.edit-profile-card{
-  max-width: 1400px;
+.container{
+  max-width: max-content;
   margin: 0 auto;
+  margin-top: 120px;
 }
 
 .for-button{
@@ -1407,5 +1431,31 @@ body{
   margin-bottom:48px;
   display: flex;
   gap: 20px;
+}
+
+.container-for-form{
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.inp{
+  position: absolute;
+  margin-left: 101px;
+}
+
+.edit-profile-card p{
+  color: #A23A3F;
+}
+
+/* PASSWORD CHANGE */
+
+.inp2{
+  position: absolute;
+  margin-left: 250px;
+}
+
+.change-password-card p{
+  color: #A23A3F;
 }
 

@@ -221,17 +221,22 @@
         <div class="wrap">
 
                 {% if user.is_authenticated %}
-                    <h1><a href="{% url 'userprofile:profile' %}">Войти в профлиль</a></h1>
                     <h1 class="logo-user">Здравствуйте, {{ user.username }}</h1>
-                    <h1>
-                        <form action="{% url 'logoutuser' %}" method="post">
-                            {% csrf_token %}
-                            <button class="top">Выйти</button>
-                        </form>
-                    </h1>
+                    <h1><a href="{% url 'userprofile:profile' %}">Войти в профлиль</a></h1>
                 {% else %}
-                    <h1><a href="{% url 'signupuser' %}">Зарегистрироваться</a></h1>
-                    <h1><a href="{% url 'loginuser' %}">Войти</a></h1>
+                    <div class="btn-login-sign-up">
+                        <hr class="hr-for-register">
+                        <h1>Зарегестрируйтесь для быстрой записи на процедуру</h1>
+                             <div class="wrapper">
+                                <form action="{% url 'signupuser' %}">
+                                    <button class="btn-profile">Зарегистрироваться</button>
+                                </form>
+                                <form action="{% url 'loginuser' %}">
+                                    <button class="btn-profile">Войти</button>
+                                </form>
+                        </div>
+                        <hr class="hr-for-register">
+                    </div>
                 {% endif %}
 
         </div>

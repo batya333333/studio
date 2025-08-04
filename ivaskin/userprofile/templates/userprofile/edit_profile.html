@@ -30,7 +30,7 @@
     <div class="container">
             <div class="edit-profile-card">
                 <h1 id="h1-p">Редактировать профиль</h1>
-                
+                <hr class="h-profile">
                 {% if messages %}
                     {% for message in messages %}
                         <div>
@@ -43,8 +43,13 @@
                     {% csrf_token %}
                     
                     <div class="for-name">
-                        <label for="{{ form.first_name.id_for_label }}">Имя</label>
-                        {{ form.first_name }}
+                        <!-- <label for="{{ form.first_name.id_for_label }}">Имя</label> -->
+                         <div class="container-for-form">
+                            <p>Имя</p>
+                            <div class="inp">
+                                {{ form.first_name }}
+                            </div>
+                        </div>
                         {% if form.first_name.errors %}
                             <div>
                                 {% for error in form.first_name.errors %}
@@ -55,8 +60,13 @@
                     </div>
                     
                     <div class="for-lastname">
-                        <label for="{{ form.last_name.id_for_label }}">Фамилия</label>
-                        {{ form.last_name }}
+                        <!-- <label for="{{ form.last_name.id_for_label }}">Фамилия</label> -->
+                         <div class="container-for-form">
+                            <p>Фамилия</p>
+                            <div class="inp">
+                                {{ form.last_name }}
+                            </div>
+                        </div>
                         {% if form.last_name.errors %}
                             <div>
                                 {% for error in form.last_name.errors %}
@@ -67,8 +77,13 @@
                     </div>
                     
                     <div class="for-telephone">
-                        <label for="{{ form.phone.id_for_label }}">Телефон</label>
-                        {{ form.phone }}
+                        <!-- <label for="{{ form.phone.id_for_label }}">Телефон</label> -->
+                         <div class="container-for-form">
+                            <p>Телефон</p>
+                            <div class="inp">
+                                {{ form.phone }}
+                            </div>
+                        </div>
                         {% if form.phone.errors %}
                             <div>
                                 {% for error in form.phone.errors %}
@@ -79,8 +94,13 @@
                     </div>
                     
                     <div class="for-email">
-                        <label for="{{ form.email.id_for_label }}">Email</label>
-                        {{ form.email }}
+                        <!-- <label for="{{ form.email.id_for_label }}">Email</label> -->
+                         <div class="container-for-form">
+                            <p>Email</p>
+                            <div class="inp">
+                                {{ form.email }}
+                            </div>
+                        </div>
                         {% if form.email.errors %}
                             <div>
                                 {% for error in form.email.errors %}
@@ -89,7 +109,7 @@
                             </div>
                         {% endif %}
                     </div>
-                    
+                    <hr class="h-profile">
                     <div class="for-button">
                         <form action="{% url 'userprofile:profile' %}">
                             <button class="btn-profile">Назад к профилю</button>
