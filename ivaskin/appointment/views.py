@@ -47,6 +47,7 @@ def book_appointment(request, service_id):
                 if request.user.is_authenticated:
                     try:
                         profile = request.user.profile
+                        appointment.user=request.user
                         appointment.first_name = profile.first_name
                         appointment.last_name = profile.last_name
                         appointment.phone = profile.phone
