@@ -1359,6 +1359,48 @@ body{
 }
 
 
+.index-auth{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap; 
+}
+
+.contact-us-wrap{
+  margin: 0 auto;
+  width: 1660px;
+}
+
+.ico{
+  display: flex;
+  align-items: baseline;
+  gap: 20px; 
+
+}
+
+.ico h3{
+  margin-top:9px;
+  margin-bottom:9px;
+}
+
+.socials{
+  margin-top:9px;
+}
+
+#soch3{
+  margin-top:0px;
+  margin-bottom:0px;
+}
+
+.wrapper-contact{
+  display: flex;
+  justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 /* PROFILE */
 .container-profile{
   max-width: 1400px;
@@ -1404,6 +1446,30 @@ body{
   border: none;
   color:#F2F2F2;
   transition: 0.5s;
+}
+
+.btn-profile-wrap{
+  display: flex;
+  gap:20px;
+  margin-top:20px;
+}
+
+.btn-profile2{
+  width: 100px;
+  font-family: "Playfair Display SC", serif;
+  height: 25px;
+  background-color: #A23A3F;
+  border: none;
+  color:#F2F2F2;
+  transition: 0.5s; 
+}
+
+#new_time{
+  font-family: "Playfair Display SC", serif;
+}
+
+#new_date{
+  font-family: "Playfair Display SC", serif;
 }
 
 .btn-profile:hover{
