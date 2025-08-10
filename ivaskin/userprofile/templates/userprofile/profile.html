@@ -16,7 +16,7 @@
         <div class="header">
             <div class="header-inner">
                 <div class="menu">
-                    <h3><a class="logo" href="">IVA SKIN</a></h3>
+                    <h3><a class="logo" href="{% url 'index' %}">IVA SKIN</a></h3>
                     <h3><a class="menu__list-link" href="#">УСЛУГИ</a></h3>
                     <h3><a class="menu__list-link" href="#">О НАС</a></h3>
                     <h3><a class="menu__list-link" href="#">FAQ</a></h3>
@@ -125,10 +125,11 @@
                     </form>
                 </div>
             </div>
+            <h4 id="h1-p">Завершенные записи:</h4>
             <!-- Завершенные записи -->
             <div class="user-details">
                 {% if completed_appointments %}
-                    <h4 id="h1-p">Завершенные записи:</h4>
+                    
                     {% for appointment in completed_appointments %}
                         <div>
                             <p><strong>Услуга:</strong> {{ appointment.service }}</p>

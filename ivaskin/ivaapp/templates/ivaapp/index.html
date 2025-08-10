@@ -16,7 +16,7 @@
         <div class="header">
             <div class="header-inner">
                 <div class="menu">
-                    <h3><a class="logo" href="">IVA SKIN</a></h3>
+                    <h3><a class="logo" href="{% url 'index' %}">IVA SKIN</a></h3>
                     <h3><a class="menu__list-link" href="#">УСЛУГИ</a></h3>
                     <h3><a class="menu__list-link" href="#">О НАС</a></h3>
                     <h3><a class="menu__list-link" href="#">FAQ</a></h3>
@@ -220,9 +220,10 @@
 
     <div class="user-log">
         <div class="wrap">
-
+                <hr class="hr-for-register">
                 {% if user.is_authenticated %}
                     <div class="index-auth">
+
                         <h1 class="logo-user">Здравствуйте, {{ user.username }}</h1>
                         <form action="{% url 'userprofile:profile' %}">
                             <button class="btn-profile">Войти в профлиль</button>
@@ -244,7 +245,7 @@
                         <hr class="hr-for-register">
                     </div>
                 {% endif %}
-
+                <hr class="hr-for-register">
         </div>
     </div>
     <div class="wrap-for-footer">

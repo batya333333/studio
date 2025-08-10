@@ -483,8 +483,8 @@ body{
 }
 
 .section3{
-    padding-top: 170px;
-    padding-bottom: 170px;
+  padding-top: 170px;
+  padding-bottom: 117px;
 }
 
 .about-us{
@@ -611,11 +611,11 @@ body{
 }
 
 .otdel-reviews{
-    font-size: 40px;
-    color:#A23A3F;
-    font-weight: bold;
-    margin-bottom: 170px;
-    text-align: center;
+  font-size: 40px;
+  color:#A23A3F;
+  font-weight: bold;
+  margin-bottom: 117px;
+  text-align: center;
 }
 
 .otdel-reviews2{
@@ -824,7 +824,7 @@ body{
 
 
 .full-review{
-  max-width:1400px;
+  max-width: 1660px;
   margin: 0 auto;
 }
 
@@ -846,12 +846,9 @@ body{
   gap: 50px;
 }
 
-.hr-for-register{
-  width:1400px
-}
 
 .btn-login-sign-up{
-  max-width: 1400px;
+  max-width: 100%;
   margin: 0 auto;
 }
 
@@ -859,6 +856,7 @@ body{
   color: #A23A3F;
   font-weight: bold;
   font-size: 40px;
+  margin-top: 0px;
 }
 
 /* Общий контейнер формы */
@@ -927,7 +925,7 @@ body{
 }
 
 .user-log{
-    margin-top: 170px;
+  margin-top: 117px;
 }
 
 .top{
@@ -1362,7 +1360,7 @@ body{
 .info-contact{
   display: flex;
   flex-direction: column;
-  color:#8f507d
+  color:#6C6968
 }
 
 .index-auth{
@@ -1385,6 +1383,7 @@ body{
   margin-top: 10px;
   margin-bottom: 10px;
   border-bottom: 1px solid#8b2f33;
+  color:#8b2f33
 }
 
 
@@ -1396,12 +1395,10 @@ body{
 
 .socials{
   margin-top:9px;
+  color:#8b2f33
 }
 
-#soch3{
-  /* margin-top:0px;
-  margin-bottom:0px; */
-}
+
 
 .info-contact h2{
   margin-bottom:0px;
@@ -1424,7 +1421,7 @@ body{
 }
 
 .info-footer a{
-  color:#64485C;
+  color:#6C6968;
   text-decoration:none;
   border-bottom: 1px solid#8b2f33;
 }
@@ -1432,7 +1429,7 @@ body{
 .wrap-for-footer{
   background: #A23A3F;
   margin-top: 170px;
-  padding-top: 35px;
+  padding-top: 37px;;
 }
 
 #main-h1-for-footer{
@@ -1455,7 +1452,7 @@ body{
 
 /* PROFILE */
 .container-profile{
-  max-width: 1400px;
+  max-width: 1660px;
   margin: 0 auto;
 }
 
