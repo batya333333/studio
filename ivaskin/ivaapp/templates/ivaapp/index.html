@@ -220,16 +220,18 @@
 
     <div class="user-log">
         <div class="wrap">
-                <hr class="hr-for-register">
+                
                 {% if user.is_authenticated %}
+                <hr class="hr-for-register">
                     <div class="index-auth">
 
                         <h1 class="logo-user">Здравствуйте, {{ user.username }}</h1>
                         <form action="{% url 'userprofile:profile' %}">
                             <button class="btn-profile">Войти в профлиль</button>
                         </form>
-                        
+
                     </div>
+                <hr class="hr-for-register">
                 {% else %}
                     <div class="btn-login-sign-up">
                         <hr class="hr-for-register">
@@ -245,7 +247,7 @@
                         <hr class="hr-for-register">
                     </div>
                 {% endif %}
-                <hr class="hr-for-register">
+                
         </div>
     </div>
     <div class="wrap-for-footer">

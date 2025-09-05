@@ -103,28 +103,29 @@
                             {% endif %}
                         </div>
                     </div>
+                    <div id="rescheduleModal" style="display: none;">
+                    <div>
+                        <h3 id="h1-p">Перенести запись</h3>
+                        <form method="post" id="rescheduleForm">
+                            {% csrf_token %}
+                            <input type="hidden" name="appointment_id" id="reschedule_appointment_id">
+                            <p id="h1r">Новая дата:</p>
+                            <input type="date" name="new_date" id="new_date" required onchange="updateAvailableTimes()">
+                            <p id="h1r">Доступное время:</p>
+                            <select name="new_time" id="new_time" required>
+                                <option value="">Выберите время</option>
+                            </select>
+                            <button type="submit" name="reschedule_appointment" class="btn-profile2">Перенести</button>
+                            <button type="button" onclick="hideRescheduleForm()" class="btn-profile2">Отмена</button>
+                        </form>
+                    </div>
+            </div>
                 {% endfor %}
             {% else %}
                 <p id="h1r">У вас нет активных записей</p>
             {% endif %}
             <!-- Форма для переноса записи (скрытая) -->
-            <div id="rescheduleModal" style="display: none;">
-                <div>
-                    <h3 id="h1-p">Перенести запись</h3>
-                    <form method="post" id="rescheduleForm">
-                        {% csrf_token %}
-                        <input type="hidden" name="appointment_id" id="reschedule_appointment_id">
-                        <p id="h1r">Новая дата:</p>
-                        <input type="date" name="new_date" id="new_date" required onchange="updateAvailableTimes()">
-                        <p id="h1r">Доступное время:</p>
-                        <select name="new_time" id="new_time" required>
-                            <option value="">Выберите время</option>
-                        </select>
-                        <button type="submit" name="reschedule_appointment" class="btn-profile2">Перенести</button>
-                        <button type="button" onclick="hideRescheduleForm()" class="btn-profile2">Отмена</button>
-                    </form>
-                </div>
-            </div>
+            
             <h4 id="h1-p">Завершенные записи:</h4>
             <!-- Завершенные записи -->
             <div class="user-details">
