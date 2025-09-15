@@ -3,6 +3,7 @@ from .models import Reviews
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from django.contrib.auth.models import auth
 
 class ReviewsForm(forms.ModelForm):
     class Meta:
@@ -10,14 +11,48 @@ class ReviewsForm(forms.ModelForm):
         fields = ['serv', 'text']
 
 class CustomUserCreationForm(UserCreationForm):
-    email = forms.EmailField(required=True, label='Email')
+    first_name = forms.CharField(label='Имя', max_length=150, required=True)
+    last_name = forms.CharField(label='Фамилия', max_length=150, required=True)
+    email = forms.EmailField(label='Email', required=True)
 
     class Meta:
         model = User
-        fields = ("username", "email", "password1", "password2")
+        fields = ("first_name", "last_name", "email", "password1", "password2")
 
     def clean_email(self):
-        email = self.cleaned_data.get('email')
-        if User.objects.filter(email=email).exists():
+        email = (self.cleaned_data.get('email') or '').strip().lower()
+        if User.objects.filter(email__iexact=email).exists():
             raise ValidationError("Пользователь с таким email уже существует.")
         return email
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        email = self.cleaned_data['email'].strip().lower()
+        user.username = email
+        user.email = email
+        user.first_name = self.cleaned_data['first_name'].strip()
+        user.last_name = self.cleaned_data['last_name'].strip()
+        if commit:
+            user.save()
+        return user
+
+class EmailAuthenticationForm(forms.Form):
+    email = forms.EmailField(label='Email', required=True)
+    password = forms.CharField(label='Пароль', widget=forms.PasswordInput, required=True)
+
+    def clean(self):
+        cleaned = super().clean()
+        email = (cleaned.get('email') or '').strip().lower()
+        password = cleaned.get('password') or ''
+        try:
+            user = User.objects.get(email__iexact=email)
+        except User.DoesNotExist:
+            raise forms.ValidationError('Неверный email или пароль')
+        user = auth.authenticate(username=user.username, password=password)
+        if not user:
+            raise forms.ValidationError('Неверный email или пароль')
+        self.user = user
+        return cleaned
+
+    def get_user(self):
+        return getattr(self, 'user', None)

@@ -5,7 +5,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
 from django.contrib.auth.models import User
 from django.http import HttpResponse
-from .forms import ReviewsForm
+from .forms import ReviewsForm, CustomUserCreationForm, EmailAuthenticationForm
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -28,38 +28,34 @@ def desc(request, description_id):
     # proc = Forclient.objects.all
     return render(request, 'ivaapp/description.html', {'desc': desc})
 
+from .forms import CustomUserCreationForm
+from django.contrib.auth import login
+
 def signup_user(request):
     if request.method == 'GET':
-        return render(request,'ivaapp/signupuser.html',{'form':UserCreationForm()})
-    else:
-        if request.POST['password1'] == request.POST['password2']:
-            try:
-                user = User.objects.create_user(request.POST['username'], password=request.POST['password1'])
-                user.save()
-                login(request, user)
-                return redirect('index')
-            except IntegrityError:
-                return render(request, 'ivaapp/signupuser.html',
-                              {'form': UserCreationForm(), 'error': 'Такое имя уже существует'})
-        else:
-            return render(request, 'ivaapp/signupuser.html', {'form': UserCreationForm(), 'error': 'Пароли не совпадают'})
+        return render(request, 'ivaapp/signupuser.html', {'form': CustomUserCreationForm()})
+    form = CustomUserCreationForm(request.POST)
+    if not form.is_valid():
+        return render(request, 'ivaapp/signupuser.html', {'form': form})
+    user = form.save()
+    login(request, user)
+    return redirect('index')
 
 def logout_user(request):
     if request.method == 'POST':
         logout(request)
         return redirect('index')
 
+
+
 def login_user(request):
     if request.method == 'GET':
-        return render(request, 'ivaapp/loginuser.html', {'form': AuthenticationForm()})
-    else:
-        user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
-        if user is None:
-            return render(request, 'ivaapp/loginuser.html',
-                          {'form': AuthenticationForm(), 'error': 'Неверные данные для входа'})
-        else:
-            login(request, user)
-            return redirect('index')
+        return render(request, 'ivaapp/loginuser.html', {'form': EmailAuthenticationForm()})
+    form = EmailAuthenticationForm(request.POST)
+    if not form.is_valid():
+        return render(request, 'ivaapp/loginuser.html', {'form': form, 'error': 'Неверные данные для входа'})
+    login(request, form.get_user())
+    return redirect('index')
 
 @login_required
 def add_review(request):
@@ -77,3 +73,6 @@ def add_review(request):
 def read_fuul_review(request,id):
     review = get_object_or_404(Reviews,pk=id)
     return render(request,'ivaapp/review_detail.html',{'review':review})
+
+def faq(request):
+    return render(request,'ivaapp/faq.html')

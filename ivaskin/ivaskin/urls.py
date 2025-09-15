@@ -28,6 +28,7 @@ urlpatterns = [
     path('add_review/', views.add_review, name='add_review'),
     path('appointment/', include('appointment.urls')),
     path('reviews/<int:id>/', views.read_fuul_review, name='reviews'),
+    path('faq/', views.faq, name='faq'),
     #auth
     path('signup/', views.signup_user, name='signupuser'),
     path('logout/', views.logout_user, name='logoutuser'),

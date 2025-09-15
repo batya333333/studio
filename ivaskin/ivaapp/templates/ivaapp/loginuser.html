@@ -7,7 +7,26 @@
     <link rel="stylesheet" href="{%static 'css/main.css'%}">
 </head>
 <body>
-<h1 id="auth">Авторизация</h1>
+    <h1>Вход</h1>
+    <form method="post">
+      {% csrf_token %}
+      {% if error %}<div class="errorlist">{{ error }}</div>{% endif %}
+      {% if form.non_field_errors %}<div class="errorlist">{{ form.non_field_errors }}</div>{% endif %}
+    
+      <label>{{ form.email.label }}</label>
+      {{ form.email }}
+      {{ form.email.errors }}
+    
+      <label>{{ form.password.label }}</label>
+      {{ form.password }}
+      {{ form.password.errors }}
+    
+      <button type="submit">Войти</button>
+    </form>
+</body>
+</html>
+
+<!-- <h1 id="auth">Авторизация</h1>
 <h3>{{ error }}</h3>
 <form method="post" class="bg">
     {% csrf_token %}
@@ -15,6 +34,4 @@
     <div class="center">
         <button class="btn">Авторизация</button>
     </div>
-</form>
-</body>
-</html>
+</form> -->
