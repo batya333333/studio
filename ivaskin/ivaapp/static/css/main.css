@@ -1075,7 +1075,10 @@ body{
 
 @media (max-width: 900px) {
   hr {
-    display: none !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 1px;
   }
 }
 
@@ -1305,8 +1308,8 @@ body{
 }
 
 #id_email{
-  width: 271px;
-  height: 28px;
+  width: 100%;
+  height: 52px;
   /* border-radius: 10px;
   border: solid 1px grey; */
 }
@@ -1343,15 +1346,15 @@ body{
 }
 
 #id_first_name{
-  width: 271px;
-  height: 28px;
+  width: 100%;
+  height: 52px;
   /* border-radius: 10px;
   border: solid 1px grey; */
 }
 
 #id_last_name{
-  width: 271px;
-  height: 28px;
+  width: 100%;
+  height: 52px;
   /* border-radius: 10px;
   border: solid 1px grey; */
 }
@@ -1445,7 +1448,7 @@ body{
 
 .wrapper-contact {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   /* align-items: flex-start; */
   background: #F2F2F2;
   padding: 20px;
@@ -1586,11 +1589,12 @@ body{
   margin-top:48px;
   margin-bottom:48px;
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
 }
 
 .btn-profile{
-  width: 300px;
+  width: 400px;
   font-family: "Playfair Display SC", serif;
   height: 50px;
   background-color: #A23A3F;
@@ -1674,5 +1678,294 @@ body{
 
 .change-password-card p{
   color: #A23A3F;
+}
+
+/* REVIEW FORM STYLES */
+.auth-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #F0F0F0 0%, #F2F2F2 100%);
+  padding: 60px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-card {
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 
+    0 10px 40px rgba(162, 58, 63, 0.15),
+    0 4px 20px rgba(108, 105, 104, 0.1);
+  max-width: 600px;
+  width: 100%;
+  border: 1px solid rgba(162, 58, 63, 0.1);
+}
+
+.auth-title {
+  color: #A23A3F;
+  font-size: 32px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.auth-subtitle {
+  color: #64485C;
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 300;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.auth-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .auth-container { padding: 30px 15px; }
+  .auth-card { padding: 25px; border-radius: 15px; }
+  .auth-title { font-size: 24px; }
+  .auth-subtitle { font-size: 14px; }
+}
+.review-form-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #F0F0F0 0%, #F2F2F2 100%);
+  padding: 60px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.review-form-card {
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 
+    0 10px 40px rgba(162, 58, 63, 0.15),
+    0 4px 20px rgba(108, 105, 104, 0.1);
+  max-width: 600px;
+  width: 100%;
+  border: 1px solid rgba(162, 58, 63, 0.1);
+}
+
+.review-form-title {
+  color: #A23A3F;
+  font-size: 32px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.review-form-subtitle {
+  color: #64485C;
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 300;
+}
+
+.review-form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  align-items: center;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  max-width: 450px;
+}
+
+.form-label {
+  color: #A23A3F;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.review-form select,
+.review-form textarea,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: 15px 20px;
+  border: 2px solid #E0E0E0;
+  border-radius: 12px;
+  font-size: 16px;
+  font-family: "Playfair Display SC", serif;
+  color: #2E2C2C;
+  background: #FAFAFA;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.review-form select:focus,
+.review-form textarea:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: #A23A3F;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(162, 58, 63, 0.1);
+}
+
+.review-form textarea,
+.form-textarea {
+  min-height: 120px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.form-errors {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.error-message {
+  color: #E74C3C;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.form-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 20px;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 100%;
+  max-width: 450px;
+}
+
+.btn-submit-review {
+  background: #A23A3F;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: "Playfair Display SC", serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  min-width: 180px;
+  flex: 1;
+}
+
+.btn-submit-review:hover {
+  background: #8b2f33;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(162, 58, 63, 0.3);
+}
+
+.btn-cancel {
+  background: transparent;
+  color: #64485C;
+  border: 2px solid #E0E0E0;
+  padding: 13px 30px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: "Playfair Display SC", serif;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  min-width: 120px;
+  flex: 1;
+  text-align: center;
+  display: inline-block;
+}
+
+.btn-cancel:hover {
+  border-color: #A23A3F;
+  color: #A23A3F;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(162, 58, 63, 0.2);
+}
+
+/* Специальные стили для кнопок на странице регистрации */
+.btn-signup {
+  font-size: 14px !important;
+  padding: 12px 20px !important;
+}
+
+/* Mobile responsiveness for review form */
+@media (max-width: 768px) {
+  .review-form-container {
+    padding: 30px 15px;
+  }
+  
+  .review-form-card {
+    padding: 25px;
+    border-radius: 15px;
+  }
+  
+  .review-form-title {
+    font-size: 24px;
+  }
+  
+  .review-form-subtitle {
+    font-size: 14px;
+  }
+  
+  .review-form select,
+  .review-form textarea,
+  .form-select,
+  .form-textarea {
+    padding: 12px 15px;
+    font-size: 14px;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .btn-submit-review,
+  .btn-cancel {
+    width: 100%;
+    max-width: 250px;
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .review-form-container {
+    padding: 20px 10px;
+  }
+  
+  .review-form-card {
+    padding: 20px;
+  }
+  
+  .review-form-title {
+    font-size: 20px;
+  }
+  
+  .review-form-subtitle {
+    font-size: 13px;
+  }
 }
 

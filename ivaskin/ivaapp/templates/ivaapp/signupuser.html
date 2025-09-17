@@ -1,41 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+{% load static %}
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Регистрация</h1>
-    <form method="post">
-    {% csrf_token %}
+    <div class="review-form-container">
+        <div class="review-form-card">
+            <h1 class="review-form-title">Регистрация</h1>
+            <p class="review-form-subtitle">Создайте аккаунт для быстрой записи на процедуры</p>
 
-    {% if form.non_field_errors %}
-        <div class="errorlist">{{ form.non_field_errors }}</div>
-    {% endif %}
+            <form method="post" class="review-form">
+                {% csrf_token %}
 
-    <label>{{ form.first_name.label }}</label>
-    {{ form.first_name }}
-    {{ form.first_name.errors }}
+                {% if form.non_field_errors %}
+                    <div class="form-errors">{{ form.non_field_errors }}</div>
+                {% endif %}
 
-    <label>{{ form.last_name.label }}</label>
-    {{ form.last_name }}
-    {{ form.last_name.errors }}
+                <div class="form-group">
+                    <label class="form-label" for="{{ form.first_name.id_for_label }}">{{ form.first_name.label }}</label>
+                    {{ form.first_name }}
+                    {% if form.first_name.errors %}
+                        <div class="form-errors">{{ form.first_name.errors }}</div>
+                    {% endif %}
+                </div>
 
-    <label>{{ form.email.label }}</label>
-    {{ form.email }}
-    {{ form.email.errors }}
+                <div class="form-group">
+                    <label class="form-label" for="{{ form.last_name.id_for_label }}">{{ form.last_name.label }}</label>
+                    {{ form.last_name }}
+                    {% if form.last_name.errors %}
+                        <div class="form-errors">{{ form.last_name.errors }}</div>
+                    {% endif %}
+                </div>
 
-    <label>{{ form.password1.label }}</label>
-    {{ form.password1 }}
-    {{ form.password1.errors }}
+                <div class="form-group">
+                    <label class="form-label" for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+                    {{ form.email }}
+                    {% if form.email.errors %}
+                        <div class="form-errors">{{ form.email.errors }}</div>
+                    {% endif %}
+                </div>
 
-    <label>{{ form.password2.label }}</label>
-    {{ form.password2 }}
-    {{ form.password2.errors }}
+                <div class="form-group">
+                    <label class="form-label" for="{{ form.password1.id_for_label }}">{{ form.password1.label }}</label>
+                    {{ form.password1 }}
+                    {% if form.password1.errors %}
+                        <div class="form-errors">{{ form.password1.errors }}</div>
+                    {% endif %}
+                </div>
 
-    <button type="submit">Зарегистрироваться</button>
-    </form>
+                <div class="form-group">
+                    <label class="form-label" for="{{ form.password2.id_for_label }}">{{ form.password2.label }}</label>
+                    {{ form.password2 }}
+                    {% if form.password2.errors %}
+                        <div class="form-errors">{{ form.password2.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit-review btn-signup">Зарегистрироваться</button>
+                    <a href="{% url 'loginuser' %}" class="btn-cancel btn-signup">У меня уже есть аккаунт</a>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
 

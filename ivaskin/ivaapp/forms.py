@@ -11,9 +11,26 @@ class ReviewsForm(forms.ModelForm):
         fields = ['serv', 'text']
 
 class CustomUserCreationForm(UserCreationForm):
-    first_name = forms.CharField(label='Имя', max_length=150, required=True)
-    last_name = forms.CharField(label='Фамилия', max_length=150, required=True)
-    email = forms.EmailField(label='Email', required=True)
+    first_name = forms.CharField(label='Имя', max_length=150, required=True, widget=forms.TextInput(attrs={
+        'class': 'form-select',
+        'placeholder': 'Иван'
+    }))
+    last_name = forms.CharField(label='Фамилия', max_length=150, required=True, widget=forms.TextInput(attrs={
+        'class': 'form-select',
+        'placeholder': 'Иванов'
+    }))
+    email = forms.EmailField(label='Email', required=True, widget=forms.EmailInput(attrs={
+        'class': 'form-select',
+        'placeholder': 'name@example.com'
+    }))
+    password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={
+        'class': 'form-select',
+        'placeholder': 'Введите пароль'
+    }))
+    password2 = forms.CharField(label='Подтверждение пароля', widget=forms.PasswordInput(attrs={
+        'class': 'form-select',
+        'placeholder': 'Повторите пароль'
+    }))
 
     class Meta:
         model = User
@@ -34,11 +51,28 @@ class CustomUserCreationForm(UserCreationForm):
         user.last_name = self.cleaned_data['last_name'].strip()
         if commit:
             user.save()
+            # Ensure profile exists and stays in sync with user data
+            try:
+                profile = user.profile
+            except Exception:
+                # Fallback in case signal didn't create it yet
+                from userprofile.models import Profile
+                profile, _ = Profile.objects.get_or_create(user=user)
+            profile.first_name = user.first_name
+            profile.last_name = user.last_name
+            profile.email = user.email
+            profile.save()
         return user
 
 class EmailAuthenticationForm(forms.Form):
-    email = forms.EmailField(label='Email', required=True)
-    password = forms.CharField(label='Пароль', widget=forms.PasswordInput, required=True)
+    email = forms.EmailField(label='Email', required=True, widget=forms.EmailInput(attrs={
+        'class': 'form-select',
+        'placeholder': 'name@example.com'
+    }))
+    password = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={
+        'class': 'form-select',
+        'placeholder': 'Введите пароль'
+    }), required=True)
 
     def clean(self):
         cleaned = super().clean()

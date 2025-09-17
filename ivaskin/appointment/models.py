@@ -2,6 +2,7 @@ from django.db import models
 from ivaapp.models import Forclient
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 # Create your models here.
 
@@ -88,3 +89,38 @@ class Appointment(models.Model):
         return self.status in ['pending', 'confirmed']
 
     
+class AppointmentLog(models.Model):
+    ACTION_CHOICES = [
+        ('created', 'Создана'),
+        ('rescheduled', 'Перенесена'),
+        ('cancelled', 'Отменена'),
+        ('status_changed', 'Статус изменён'),
+        ('updated', 'Обновлена'),
+    ]
+
+    appointment = models.ForeignKey('Appointment', on_delete=models.CASCADE, related_name='logs')
+    action = models.CharField(max_length=32, choices=ACTION_CHOICES)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    # Снимок клиентских данных на момент события
+    client_first_name = models.CharField(max_length=50, blank=True, null=True)
+    client_last_name = models.CharField(max_length=50, blank=True, null=True)
+    client_phone = models.CharField(max_length=20, blank=True, null=True)
+    client_email = models.EmailField(blank=True, null=True)
+
+    # Процедура и мастер на момент события
+    service_name = models.CharField(max_length=255, blank=True, null=True)
+    master_name = models.CharField(max_length=255, blank=True, null=True)
+    master_telegram_id = models.CharField(max_length=100, blank=True, null=True)
+
+    # Временные и статусные изменения
+    old_date = models.DateTimeField(blank=True, null=True)
+    old_time = models.TimeField(blank=True, null=True)
+    new_date = models.DateTimeField(blank=True, null=True)
+    new_time = models.TimeField(blank=True, null=True)
+    old_status = models.CharField(max_length=20, blank=True, null=True)
+    new_status = models.CharField(max_length=20, blank=True, null=True)
+    reason = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.created_at} {self.get_action_display()} — {self.service_name} ({self.client_first_name} {self.client_last_name})"

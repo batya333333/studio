@@ -26,11 +26,37 @@ class Profile(models.Model):
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
-        Profile.objects.create(user=instance)
+        profile = Profile.objects.create(user=instance)
+        # Инициализируем профиль данными пользователя
+        updated = False
+        if instance.first_name and not profile.first_name:
+            profile.first_name = instance.first_name
+            updated = True
+        if instance.last_name and not profile.last_name:
+            profile.last_name = instance.last_name
+            updated = True
+        if instance.email and not profile.email:
+            profile.email = instance.email
+            updated = True
+        if updated:
+            profile.save()
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     try:
-        instance.profile.save()
+        profile = instance.profile
+        # Заполняем только пустые поля профиля из User, чтобы не перетирать изменения пользователя
+        updated = False
+        if instance.first_name and not profile.first_name:
+            profile.first_name = instance.first_name
+            updated = True
+        if instance.last_name and not profile.last_name:
+            profile.last_name = instance.last_name
+            updated = True
+        if instance.email and not profile.email:
+            profile.email = instance.email
+            updated = True
+        if updated:
+            profile.save()
     except Profile.DoesNotExist:
         Profile.objects.create(user=instance)

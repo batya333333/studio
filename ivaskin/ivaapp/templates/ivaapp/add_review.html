@@ -29,11 +29,45 @@
         </div>
     </header>
 
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Отправить</button>
-    </form>
+    <div class="review-form-container">
+        <div class="review-form-card">
+            <h1 class="review-form-title">Оставить отзыв</h1>
+            <p class="review-form-subtitle">Поделитесь своим опытом с нашими услугами</p>
+            
+            <form method="post" class="review-form">
+                {% csrf_token %}
+                
+                <div class="form-group">
+                    <label for="{{ form.serv.id_for_label }}" class="form-label">Выберите услугу</label>
+                    {{ form.serv }}
+                    {% if form.serv.errors %}
+                        <div class="form-errors">
+                            {% for error in form.serv.errors %}
+                                <span class="error-message">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    <label for="{{ form.text.id_for_label }}" class="form-label">Ваш отзыв</label>
+                    {{ form.text }}
+                    {% if form.text.errors %}
+                        <div class="form-errors">
+                            {% for error in form.text.errors %}
+                                <span class="error-message">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit-review">Отправить отзыв</button>
+                    <a href="{% url 'index' %}" class="btn-cancel">Отмена</a>
+                </div>
+            </form>
+        </div>
+    </div>
     
 </body>
 </html>
