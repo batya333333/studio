@@ -34,7 +34,7 @@ body{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 1660px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
@@ -197,6 +197,11 @@ body{
     transition: all 0.3s ease;
     transform: scale(1.05);
     color: black;
+}
+
+.main-btn a{
+  text-decoration: none;
+  color:white;
 }
 
 .service-inner{
@@ -794,6 +799,7 @@ body{
   box-shadow: 0 6px 24px rgba(162, 58, 63, 0.12), 0 3px 6px rgba(108, 105, 104, 0.08);
   margin: 0 auto;
   justify-content: center;
+  margin-bottom: 20px;
 }
 
 .abouts-rev{
@@ -949,6 +955,17 @@ body{
     background: #ffffff;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Slightly reduce left-side typography on medium screens */
+@media (max-width: 1200px) {
+  .left {
+    font-size: 0.7rem;
+  }
+  .left h1 {
+    font-size: 42px;
+    line-height: 58px;
+  }
 }
 
 /* --- Mobile adaptation for index.html --- */
