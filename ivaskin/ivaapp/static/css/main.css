@@ -789,6 +789,7 @@ body{
 
 .in{
   width: 400px;
+  height: 246px;
   border:solid 1px #dddddd;
   display: flex;
   flex-direction: column;
@@ -800,6 +801,28 @@ body{
   margin: 0 auto;
   justify-content: center;
   margin-bottom: 20px;
+}
+
+@media (max-width:1500px){
+  .div1{
+    width: 320px;
+    /* height: 800px; */
+    display: flex;
+    flex-direction: column;
+    background: white;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+    /* border: solid 1px #64485C; */
+    border: 1px solid rgba(162, 58, 63, 0.2);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(162, 58, 63, 0.08), 0 2px 4px rgba(108, 105, 104, 0.05);
+    transition: all 0.3s 
+  ease;
+  }
+  .text-chose{
+    font-size: 14px;
+  }
 }
 
 .abouts-rev{
@@ -830,7 +853,7 @@ body{
 
 
 .full-review{
-  max-width: 1660px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
