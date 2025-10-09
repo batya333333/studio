@@ -3,6 +3,9 @@
 *.ipr
 *.iws
 
+
+requirements.txt
+
 Virtual environments
 venv*/
 venvmac*/
