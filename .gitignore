@@ -2,3 +2,9 @@
 *.iml
 *.ipr
 *.iws
+
+Virtual environments
+venv*/
+venvmac*/
+env*/
+ENV*/
