@@ -23,14 +23,16 @@ bot = Bot(token=TELEGRAM_TOKEN)
 async def send_new_appointments():
     now = timezone.now()
     five_minutes_ago = now - timedelta(minutes=5)
-    # Берём все свежие логи и шлём по мастеру из снимка
+    # Берём логи, которые ещё не отправляли, и шлём по мастеру из снимка
     logs = await sync_to_async(list)(
-        AppointmentLog.objects.filter(created_at__gte=five_minutes_ago)
+        AppointmentLog.objects.filter(sent_to_telegram=False)
         .order_by('created_at')
     )
     for log in logs:
         chat_id = log.master_telegram_id
         if not chat_id:
+            log.sent_to_telegram = True
+            await sync_to_async(log.save)(update_fields=['sent_to_telegram'])
             continue
         if log.action == 'created':
             header = 'Новая запись'
@@ -80,6 +82,9 @@ async def send_new_appointments():
             await bot.send_message(chat_id=chat_id, text=text)
         except Exception as e:
             print(f"Ошибка при отправке сообщения: {e}")
+        else:
+            log.sent_to_telegram = True
+            await sync_to_async(log.save)(update_fields=['sent_to_telegram'])
 
 async def main():
     while True:

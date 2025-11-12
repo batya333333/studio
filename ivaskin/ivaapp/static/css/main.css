@@ -1045,8 +1045,8 @@ body{
     align-items: flex-start;
   }
   .main-btn, .main-btn2 {
-    width: 100% !important;
-    height: 50px !important;
+    /* width: 100% !important;
+    height: 50px !important; */
     font-size: 16px !important;
   }
   .service-top-text, .about-us {
@@ -1484,6 +1484,10 @@ body{
 .footer-bottom p{
   margin-bottom:0px;
   text-align: center;
+  position: absolute;
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
 }
 
 .wrapper-contact {
@@ -1597,7 +1601,7 @@ body{
 
 /* PROFILE */
 .container-profile{
-  max-width: 1660px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
@@ -2041,4 +2045,159 @@ body{
   margin-bottom: 0;
   border-bottom: none;
 }
+/* Центрируем карточку «комплекса» на любых ширинах */
+section2 .wrapper-complex,
+section2 .wrapper-complex .complex4 {
+  display: flex;
+  justify-content: center;
+}
 
+section2 .wrapper-complex .complex4 .text-img {
+  width: min(92vw, 560px);
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* На очень узких экранах добавляем запас по краям */
+@media (max-width: 480px) {
+  section2 .wrapper-complex .complex4 .text-img {
+    padding-inline: 24px;
+  }
+}
+
+/* Сбрасываем ширину hr и центрируем его - убираем левый отступ, не влияет на flex */
+section2 hr,
+section2 .wrapper-complex hr {
+  display: block !important;
+  width: clamp(280px, 90vw, 1400px) !important;
+  max-width: 1400px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-top: 32px !important;
+  margin-bottom: 32px !important;
+  padding: 0 !important;
+  border: none !important;
+  border-top: 1px solid rgba(0, 0, 0, 0.12) !important;
+  position: relative !important;
+  left: auto !important;
+  right: auto !important;
+  transform: none !important;
+  box-sizing: border-box !important;
+  flex-shrink: 0 !important;
+  flex-grow: 0 !important;
+  align-self: center !important;
+}
+
+/* Исправление позиционирования белого блока в section2 - всегда по центру */
+section2 .service-inner {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  overflow-x: hidden !important;
+  margin: 0 auto !important;
+  padding: 34px !important;
+}
+
+section2 .wrapper-complex {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  overflow-x: hidden !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+}
+
+section2 .wrapper-complex .complex4 {
+  display: flex !important;
+  flex-direction: row-reverse !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  gap: 200px !important;
+  box-sizing: border-box !important;
+}
+
+/* Белая карточка - всегда по центру, независимо от hr */
+section2 .wrapper-complex .complex4 {
+  position: relative !important;
+}
+
+section2 .wrapper-complex .complex4 .text-img {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding: 0 !important;
+  max-width: 600px !important;
+  width: 600px !important;
+  height: auto !important;
+  min-height: 300px !important;
+  box-sizing: border-box !important;
+  position: relative !important;
+  left: 0 !important;
+  right: 0 !important;
+  transform: none !important;
+  float: none !important;
+  flex-shrink: 0 !important;
+  flex-grow: 0 !important;
+  align-self: center !important;
+}
+
+/* На средних экранах адаптируем ширину */
+@media (max-width: 1400px) {
+  section2 .wrapper-complex .complex4 .text-img {
+    width: min(600px, 90vw) !important;
+    max-width: 600px !important;
+  }
+}
+
+/* На узких экранах - полная адаптация */
+@media (max-width: 1024px) {
+  section2 .wrapper-complex .complex4 {
+    flex-direction: column !important;
+    gap: 20px !important;
+  }
+  
+  section2 .wrapper-complex .complex4 .text-img {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+  }
+}
+
+/* Центровка карточки и текста «Комплекс (XL)» на узких экранах */
+@media (max-width: 900px) {
+  section2 .wrapper-complex .complex4 {
+    flex-direction: column !important;
+    gap: 24px !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  section2 .wrapper-complex .complex4 > .text-img {
+    width: 100% !important;
+    max-width: 520px !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+    align-items: center !important;
+  }
+
+  section2 .wrapper-complex .complex4 > .text-img > * {
+    width: 100% !important;
+    text-align: center !important;
+  }
+}

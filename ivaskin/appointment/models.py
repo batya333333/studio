@@ -121,6 +121,7 @@ class AppointmentLog(models.Model):
     old_status = models.CharField(max_length=20, blank=True, null=True)
     new_status = models.CharField(max_length=20, blank=True, null=True)
     reason = models.TextField(blank=True, null=True)
+    sent_to_telegram = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.created_at} {self.get_action_display()} — {self.service_name} ({self.client_first_name} {self.client_last_name})"
